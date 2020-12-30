@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Automotive.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace SampleAutoMotive.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

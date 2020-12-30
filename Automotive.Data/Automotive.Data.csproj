@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>10abba37-cb80-49d9-86f4-d6760dd5f7ed</ProjectGuid>
+    <ProjectGuid>{10ABBA37-CB80-49D9-86F4-D6760DD5F7ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Automotive.Data</RootNamespace>
@@ -31,24 +31,104 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomotiveEntity\AutomotiveEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomotiveEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\AutomotiveEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\AutomotiveEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomotiveEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Brand.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Category.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Customer.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Order.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Order_Items.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Product.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Staff.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Stock.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotiveEntity\Store.cs">
+      <DependentUpon>AutomotiveEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="CustomerDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AutomotiveEntity\AutomotiveEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AutomotiveEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="AutomotiveEntity\AutomotiveEntity.edmx.diagram">
+      <DependentUpon>AutomotiveEntity.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AutomotiveEntity\AutomotiveEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AutomotiveEntity.Context.cs</LastGenOutput>
+      <DependentUpon>AutomotiveEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="AutomotiveEntity\AutomotiveEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AutomotiveEntity.edmx</DependentUpon>
+      <LastGenOutput>AutomotiveEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Automotive.Model\Automotive.Model.csproj">
+      <Project>{693dd9a7-782c-4cf1-b2a8-fb3d46b2498e}</Project>
+      <Name>Automotive.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

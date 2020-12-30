@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0370991e77784343aa201e33cbdebaa3" Name="Diagram1" ZoomLevel="34">
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Brand" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Category" Width="1.5" PointX="1.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Customer" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Order_Items" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Order" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Staff" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Stock" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleAutomotiveModel.Store" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Products__brand___72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Products__catego__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Orders__customer__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Order_Ite__order__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Order_Ite__produ__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Orders__staff_id__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Orders__store_id__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Stocks__product___76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Staffs__manager___74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Staffs__store_id__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleAutomotiveModel.FK__Stocks__store_id__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
