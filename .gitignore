@@ -3,3 +3,15 @@
 ################################################################################
 
 /.vs/SampleAutoMotive
+/SampleAutoMotive/bin
+/SampleAutoMotive/obj
+/SampleAutoMotive/obj/Debug
+/bin
+/obj
+/Debug
+/Automotive.Data/obj/Debug
+/Automotive.Data/bin/Debug
+/Automotive.Business/obj/Debug
+/Automotive.Business/bin/Debug
+/Automotive.Model/obj/Debug
+/Automotive.Model/bin/Debug
