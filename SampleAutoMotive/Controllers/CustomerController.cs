@@ -17,5 +17,13 @@ namespace SampleAutoMotive.Controllers
             IEnumerable<CustomerModel> customers = oDataService.GetAll();
             return View(customers);
         }
+
+        [HttpPost]
+        public JsonResult Delete(int customerId)
+        {
+            CustomerDataService oDataService = new CustomerDataService();
+            bool Result = oDataService.Delete(customerId);
+            return Json(new { Result = Result });
+        }
     }
 }

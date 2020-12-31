@@ -41,6 +41,7 @@
                                             <th>Last Name</th>
                                             <th>Phone</th>
                                             <th>Email</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,6 +52,11 @@
                                             <td>@customer.LastName</td>
                                             <td>@customer.Phone</td>
                                             <td>@customer.Email</td>
+                                            <td>
+                                                <input class="inputCustId" type="hidden" value="@customer.CustomerId" />
+                                                <a href="#">Edit</a> |
+                                                <a class="clsDelete" href="#!">Delete</a>
+                                            </td>
                                         </tr>
                                         }
                                     </tbody>
@@ -60,6 +66,7 @@
                                             <th>Last Name</th>
                                             <th>Phone</th>
                                             <th>Email</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -77,11 +84,8 @@
         <!-- /.content -->
     </div>
 
-    <script>$(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
+    <script>
+        $(function () {
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -91,4 +95,35 @@
       "autoWidth": false,
       "responsive": true,
     });
-  });</script>
+        });
+
+
+        $(document).ready(function () {
+
+            $(".clsDelete").click(function () {
+                var customerId = $(this).siblings(".inputCustId").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Delete","Customer")",
+                    data: {customerId : customerId},
+                    cache: false,
+                    success: function (data) {
+
+                        if (data.Result == true) {
+                            alert("User Deleted successfully..")
+                            location.reload();
+                        } else {
+                            alert("Some error happened..")
+                        }
+                        
+                    }
+                });
+
+            })
+
+
+
+        })
+
+    </script>

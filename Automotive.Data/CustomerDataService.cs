@@ -16,18 +16,41 @@ namespace Automotive.Data
             using (var bikestoreContext = new SampleAutomotiveEntities())
             {
                 List<CustomerModel> customers = bikestoreContext.Customers
+                    .Where(x => x.IsActive == true)
                     .Select(x => new CustomerModel
                     {
+                        CustomerId = x.customer_id,
                         FirstName = x.first_name,
                         LastName = x.last_name,
                         Phone = x.phone,
                         Email = x.email
 
-                    }).ToList();
+                    }).Take(10).ToList();
                 return customers;
             }
         }
 
+        public bool Delete(int customerId)
+        {
+            try
+            {
+                using (var bikestoreContext = new SampleAutomotiveEntities())
+                {
+                    Customer customer = bikestoreContext.Customers.Where(x => x.customer_id == customerId).FirstOrDefault();
+                    if (customer != null)
+                    {
+                        customer.IsActive = false;
+                        bikestoreContext.SaveChanges();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
+        }
 
     }
 }

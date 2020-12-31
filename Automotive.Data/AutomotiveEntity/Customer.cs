@@ -29,6 +29,7 @@ namespace Automotive.Data.AutomotiveEntity
         public string city { get; set; }
         public string state { get; set; }
         public string zip_code { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
