@@ -11,7 +11,7 @@ namespace Automotive.Data
     public class CustomerDataService
     {
 
-        public List<CustomerModel> GetAll()
+        public List<CustomerModel> GetAll(int currentIndex, int TotalRecordsPerPage)
         {
             using (var bikestoreContext = new SampleAutomotiveEntities())
             {
@@ -25,7 +25,7 @@ namespace Automotive.Data
                         Phone = x.phone,
                         Email = x.email
 
-                    }).Take(10).ToList();
+                    }).OrderBy(x => x.CustomerId).Skip(currentIndex * TotalRecordsPerPage).Take(TotalRecordsPerPage).ToList();
                 return customers;
             }
         }

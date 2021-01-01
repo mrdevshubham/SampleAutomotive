@@ -1,4 +1,4 @@
-﻿using Automotive.Data;
+﻿using Automotive.Business;
 using Automotive.Model;
 using System;
 using System.Collections.Generic;
@@ -13,16 +13,16 @@ namespace SampleAutoMotive.Controllers
         // GET: Customer
         public ActionResult List()
         {
-            CustomerDataService oDataService = new CustomerDataService();
-            IEnumerable<CustomerModel> customers = oDataService.GetAll();
+            CustomerService ocustomerService = new CustomerService();
+            IEnumerable<CustomerModel> customers = ocustomerService.GetAllCustomers(2,10);
             return View(customers);
         }
 
         [HttpPost]
         public JsonResult Delete(int customerId)
         {
-            CustomerDataService oDataService = new CustomerDataService();
-            bool Result = oDataService.Delete(customerId);
+            CustomerService ocustomerService = new CustomerService();
+            bool Result = ocustomerService.DeleteCustomer(customerId);
             return Json(new { Result = Result });
         }
     }

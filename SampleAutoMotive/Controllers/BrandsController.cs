@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Automotive.Data;
+using Automotive.Business;
 using Automotive.Model;
 
 namespace SampleAutoMotive.Controllers
@@ -13,16 +13,16 @@ namespace SampleAutoMotive.Controllers
         // GET: Brands
         public ActionResult Index()
         {
-            BrandData bdata = new BrandData();
-            IEnumerable<BrandModel> brands = bdata.GetAll();
+            BrandService oBrandService = new BrandService();
+            IEnumerable<BrandModel> brands = oBrandService.GetAllBrands();
             return View(brands);
         }
 
         [HttpPost]
         public JsonResult Delete(int brandId)
         {
-            BrandData bdata = new BrandData();
-            bool Result = bdata.Delete(brandId);
+            BrandService oBrandService = new BrandService();
+            bool Result = oBrandService.DeleteBrand(brandId);
             return Json(new { Result = Result });
         }
     }

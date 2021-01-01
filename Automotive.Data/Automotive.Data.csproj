@@ -93,7 +93,6 @@
       <DependentUpon>AutomotiveEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="BrandData.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CustomerDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

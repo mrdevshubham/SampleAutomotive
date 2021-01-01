@@ -131,6 +131,7 @@
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1939,6 +1940,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1964,9 +1966,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Automotive.Data\Automotive.Data.csproj">
-      <Project>{10abba37-cb80-49d9-86f4-d6760dd5f7ed}</Project>
-      <Name>Automotive.Data</Name>
+    <ProjectReference Include="..\Automotive.Business\Automotive.Business.csproj">
+      <Project>{239dc4a2-7d52-49d1-a269-8a6e38498748}</Project>
+      <Name>Automotive.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Automotive.Model\Automotive.Model.csproj">
       <Project>{693dd9a7-782c-4cf1-b2a8-fb3d46b2498e}</Project>
