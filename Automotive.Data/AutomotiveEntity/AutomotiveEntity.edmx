@@ -11,6 +11,7 @@
           </Key>
           <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="brand_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -321,6 +322,7 @@
           <Property Name="brand_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="brand_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__brand___72C60C4A" FromRole="Brands" ToRole="Products" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -650,6 +652,7 @@
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="SampleAutomotiveModel.Brand">
               <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="brand_id" ColumnName="brand_id" />
                 <ScalarProperty Name="brand_name" ColumnName="brand_name" />
               </MappingFragment>
