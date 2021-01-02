@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>DataTables</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">DataTables</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>CustomerId</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>CustomerId</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<script>
+
+    $(function ()
+    {
+        var table = $('#example2').DataTable({
+            "paging": true,
+            "processing": true,
+            "scrollY": "400px",
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "serverSide": true,
+            "columns": [
+                { "data": "CustomerId", "visible": false },
+                { "data": "FirstName" },
+                { "data": "LastName" },
+                { "data": "Email" },
+                { "data": "Phone" },
+                {
+                    mRender: function (data, type, row) {
+
+                        var linkEdit = '<a href="#!"><i class="fas fa-edit"></i></a>';
+                        var linkDelete = '<a href="#!"><i class="fas fa-trash"></i></a>';
+                        return linkEdit + " | " + linkDelete;
+                    }
+                }
+            ],
+            "ajax":{
+                url :"@Url.Action("List","Customer")", // json datasource
+                type: "POST",  // method  , by default get,
+                error: function(){  // error handling
+                    $(".employee-grid-error").html("");
+                    $("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                    $("#employee-grid_processing").css("display","none");
+
+                }
+            },
+            "createdRow": function (row, data, dataIndex) {
+                if (data.DT_RowData.pkey == 5) {
+                    $(row).css('color','red')
+                    // Do something which you want to do with the element
+                }
+            }
+        });
+
+    });
+</script>

@@ -18,6 +18,12 @@ namespace Automotive.Business
             return customers;
         }
 
+        public Int64 GetAllCustomersCount()
+        {
+            CustomerDataService oDataService = new CustomerDataService();
+            return oDataService.GetTotalRecordCount();
+        }
+
         public bool DeleteCustomer(int customerId)
         {
             CustomerDataService oDataService = new CustomerDataService();

@@ -8,6 +8,8 @@ namespace Automotive.Model
 {
     public class CustomerModel
     {
+        public string DT_RowId { get; set; }
+        public object DT_RowData { get; set; }
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

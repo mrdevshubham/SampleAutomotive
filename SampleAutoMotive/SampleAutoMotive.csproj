@@ -135,6 +135,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelbinder\DataTableRequestModelBinder.cs" />
+    <Compile Include="Models\DataTableRequest.cs" />
+    <Compile Include="Models\DataTableResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1936,10 +1939,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\Customer\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

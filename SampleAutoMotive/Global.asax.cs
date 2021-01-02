@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SampleAutoMotive.Modelbinder;
+using SampleAutoMotive.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +18,7 @@ namespace SampleAutoMotive
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(DataTableRequest), new DataTableRequestModelBinder());
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Automotive.Data
                     .Where(x => x.IsActive == true)
                     .Select(x => new CustomerModel
                     {
+                        DT_RowId = System.Data.Entity.SqlServer.SqlFunctions.StringConvert((double)x.customer_id),
+                        DT_RowData = new { pkey  = x.customer_id },
                         CustomerId = x.customer_id,
                         FirstName = x.first_name,
                         LastName = x.last_name,
@@ -27,6 +29,14 @@ namespace Automotive.Data
 
                     }).OrderBy(x => x.CustomerId).Skip(currentIndex * TotalRecordsPerPage).Take(TotalRecordsPerPage).ToList();
                 return customers;
+            }
+        }
+
+        public Int64 GetTotalRecordCount()
+        {
+            using (var bikestoreContext = new SampleAutomotiveEntities())
+            {
+                return bikestoreContext.Customers.Where(x => x.IsActive == true).Count();
             }
         }
 
