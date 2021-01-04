@@ -17,8 +17,11 @@ namespace SampleAutoMotive.Modelbinder
 
                 int draw = Convert.ToInt32(request.Form.Get("draw"));
                 int length = Convert.ToInt32(request.Form.Get("length"));
-                string search = request.Form.Get("search");
                 int start = Convert.ToInt32(request.Form.Get("start"));
+                int ordercolumn = Convert.ToInt32(request.Form.Get("order[0][column]"));
+                string orderdirection = request.Form.Get("order[0][dir]");
+                string search = request.Form.Get("search[value]");
+                
 
                 return new DataTableRequest
                 {
@@ -26,7 +29,9 @@ namespace SampleAutoMotive.Modelbinder
                     length = length,
                     start = start,
                     search = search,
-                    CurrentIndex = GetCurrentIndex(start, length)
+                    CurrentIndex = GetCurrentIndex(start, length),
+                    orderByColumnIndex = ordercolumn,
+                    orderDirection = orderdirection
 
                 };
             }
