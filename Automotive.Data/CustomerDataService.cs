@@ -11,13 +11,30 @@ namespace Automotive.Data
     public class CustomerDataService
     {
 
-        public List<CustomerModel> GetAll(int currentIndex, int TotalRecordsPerPage)
+        public List<CustomerModel> GetAll(SearchModel searchModel)
         {
             using (var bikestoreContext = new SampleAutomotiveEntities())
             {
-                List<CustomerModel> customers = bikestoreContext.Customers
-                    .Where(x => x.IsActive == true)
-                    .Select(x => new CustomerModel
+                IQueryable<Customer> customer = bikestoreContext.Customers.Where(x => x.IsActive == true);
+
+                if (!string.IsNullOrEmpty(searchModel.searchItem))
+                {
+                    customer = customer.Where(x => x.first_name.Contains(searchModel.searchItem));
+                }
+
+                if (!string.IsNullOrEmpty(searchModel.orderByCommand))
+                {
+                    if (searchModel.orderByCommand == "asc")
+                        customer = customer.OrderBy(x => x.customer_id);
+                    else
+                        customer = customer.OrderByDescending(x => x.customer_id);
+                }
+                
+                customer = customer
+                    .Skip(searchModel.currentIndex * searchModel.TotalRecordsPerPage)
+                    .Take(searchModel.TotalRecordsPerPage);
+                
+                    var Result = customer.Select(x => new CustomerModel
                     {
                         DT_RowId = System.Data.Entity.SqlServer.SqlFunctions.StringConvert((double)x.customer_id),
                         DT_RowData = new { pkey  = x.customer_id },
@@ -27,8 +44,9 @@ namespace Automotive.Data
                         Phone = x.phone,
                         Email = x.email
 
-                    }).OrderBy(x => x.CustomerId).Skip(currentIndex * TotalRecordsPerPage).Take(TotalRecordsPerPage).ToList();
-                return customers;
+                    }).ToList();
+
+                return Result;
             }
         }
 

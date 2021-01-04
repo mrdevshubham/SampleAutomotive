@@ -11,10 +11,10 @@ namespace Automotive.Business
     public class CustomerService
     {
 
-        public IEnumerable<CustomerModel> GetAllCustomers(int currentIndex, int TotalRecordsPerPage)
+        public IEnumerable<CustomerModel> GetAllCustomers(SearchModel searchModele)
         {
             CustomerDataService oDataService = new CustomerDataService();
-            IEnumerable<CustomerModel> customers = oDataService.GetAll(currentIndex, TotalRecordsPerPage);
+            IEnumerable<CustomerModel> customers = oDataService.GetAll(searchModele);
             return customers;
         }
 

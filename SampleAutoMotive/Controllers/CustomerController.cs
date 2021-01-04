@@ -14,8 +14,13 @@ namespace SampleAutoMotive.Controllers
         // GET: Customer
         public ActionResult List()
         {
+            SearchModel searchModele = new SearchModel
+            {
+                currentIndex = 0,
+                TotalRecordsPerPage = 100
+            };
             CustomerService ocustomerService = new CustomerService();
-            IEnumerable<CustomerModel> customers = ocustomerService.GetAllCustomers(0,100);
+            IEnumerable<CustomerModel> customers = ocustomerService.GetAllCustomers(searchModele);
             return View(customers);
         }
 
@@ -28,7 +33,17 @@ namespace SampleAutoMotive.Controllers
         public ActionResult List(DataTableRequest dTablerequest)
         {
             CustomerService ocustomerService = new CustomerService();
-            IEnumerable<CustomerModel> customers = ocustomerService.GetAllCustomers(dTablerequest.CurrentIndex, dTablerequest.length);
+
+            SearchModel searchModel = new SearchModel
+            {
+                currentIndex = dTablerequest.CurrentIndex,
+                TotalRecordsPerPage = dTablerequest.length,
+                searchItem = dTablerequest.search,
+                OrderByColumn = dTablerequest.orderByColumnIndex,
+                orderByCommand = dTablerequest.orderDirection
+            };
+
+            IEnumerable<CustomerModel> customers = ocustomerService.GetAllCustomers(searchModel);
             Int64 TotalCount = ocustomerService.GetAllCustomersCount();
 
             DataTableResponse DtResponse = new DataTableResponse();
@@ -36,44 +51,6 @@ namespace SampleAutoMotive.Controllers
             DtResponse.recordsTotal = TotalCount;
             DtResponse.recordsFiltered = TotalCount;
             DtResponse.data = customers;
-
-            //var Result = new
-            //{
-            //    draw = 1,
-            //    recordsTotal = 57,
-            //    recordsFiltered = 57,
-            //    data = new[] 
-            //    {
-            //        new string[] {"Shubham","Jain","9292929292","a@bb.com","Hi"},
-            //        new string[] {"Ketan","Jain","6565656565","k@bb.com","Bye"}
-            //    }
-            //};
-            //var Result = new
-            //{
-            //    draw = 1,
-            //    recordsTotal = 57,
-            //    recordsFiltered = 57,
-            //    data = new[]
-            //    {
-            //        new 
-            //        {
-            //            firstName = "Shubham",
-            //            lastName = "Jain",
-            //            email = "shub@gmail.com",
-            //            phone = "9494959697"
-
-            //        },
-            //        new
-            //        {
-            //            firstName = "Ketan",
-            //            lastName = "Jain",
-            //            email = "ketu@gmail.com",
-            //            phone = "9823452312"
-
-            //        }
-            //    }
-            //};
-
 
             return Json(DtResponse);
         }
