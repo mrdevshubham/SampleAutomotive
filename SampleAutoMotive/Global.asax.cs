@@ -19,6 +19,7 @@ namespace SampleAutoMotive
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelBinders.Binders.Add(typeof(DataTableRequest), new DataTableRequestModelBinder());
+           
         }
     }
 }
