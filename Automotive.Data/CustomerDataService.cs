@@ -58,6 +58,68 @@ namespace Automotive.Data
             }
         }
 
+        public CustomerModel GetCustomerDetails(int customerId)
+        {
+            using (var bikestoreContext = new SampleAutomotiveEntities())
+            {
+                Customer customer = bikestoreContext.Customers.Where(x => x.customer_id == customerId).FirstOrDefault();
+
+                if (customer != null)
+                {
+                    CustomerModel objCustomerModel = new CustomerModel();
+                    objCustomerModel.FirstName = customer.first_name;
+                    objCustomerModel.LastName = customer.last_name;
+                    objCustomerModel.Phone = customer.phone;
+                    objCustomerModel.ZipCode = customer.zip_code;
+
+                    return objCustomerModel;
+                }
+                return null;
+            }
+        }
+
+        public bool Add(CustomerModel customer)
+        {
+            try
+            {
+                using (var bikestoreContext = new SampleAutomotiveEntities())
+                {
+                    Customer custObj = new Customer();
+                    custObj.first_name = customer.FirstName;
+                    custObj.last_name = customer.LastName;
+                    custObj.phone = customer.Phone;
+                    custObj.email = customer.Email;
+                    custObj.IsActive = true;
+                    custObj.zip_code = customer.ZipCode;
+                    bikestoreContext.Customers.Add(custObj);
+                    bikestoreContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool Update(CustomerModel customer)
+        {
+            using(var bikestoreContext = new SampleAutomotiveEntities())
+            {
+                Customer ucustomer = bikestoreContext.Customers.Where(x => x.customer_id == customer.CustomerId).FirstOrDefault();
+                if (ucustomer != null)
+                {
+                    ucustomer.first_name = customer.FirstName;
+                    ucustomer.last_name = customer.LastName;
+                    ucustomer.phone = customer.Phone;
+                    ucustomer.zip_code = customer.ZipCode;
+                    bikestoreContext.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool Delete(int customerId)
         {
             try

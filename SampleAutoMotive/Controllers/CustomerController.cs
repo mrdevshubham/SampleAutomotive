@@ -56,6 +56,41 @@ namespace SampleAutoMotive.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetCustomer(int customerId)
+        {
+            CustomerService ocustomerService = new CustomerService();
+            CustomerModel objCustModel = ocustomerService.GetCustomerDetails(customerId);
+            return Json(objCustModel);
+        }
+
+        [HttpPost]
+        public ActionResult Update(CustomerModel customerModel)
+        {
+            if (customerModel.CustomerId != 0)
+            {
+                CustomerService ocustomerService = new CustomerService();
+                bool Result = ocustomerService.UpdateCustomerDetails(customerModel);
+
+                if (Result)
+                    return Json(new { Result = Result, Message = "Customer details has been updated successfully." });
+                else
+                    return Json(new { Result = Result, Message = "Some Technical Issue Occered." });
+            }
+            return Json(new { Result = false, Message = "Invalid Customer" });
+        }
+
+        [HttpPost]
+        public ActionResult Add(CustomerModel customerModel)
+        {
+            CustomerService ocustomerService = new CustomerService();
+            bool Result = ocustomerService.AddCustomer(customerModel);
+            if (Result)
+                return Json(new { Result = Result, Message = "Customer has been added successfully." });
+            else
+                return Json(new { Result = Result, Message = "Some Technical Issue Occered." });
+        }
+
+        [HttpPost]
         public JsonResult Delete(int customerId)
         {
             CustomerService ocustomerService = new CustomerService();

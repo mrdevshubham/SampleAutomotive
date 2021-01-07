@@ -24,6 +24,25 @@ namespace Automotive.Business
             return oDataService.GetTotalRecordCount();
         }
 
+        public CustomerModel GetCustomerDetails(int customerId)
+        {
+            CustomerDataService oDataService = new CustomerDataService();
+            return oDataService.GetCustomerDetails(customerId);
+        }
+
+        public bool AddCustomer(CustomerModel customerModel)
+        {
+            CustomerDataService oDataService = new CustomerDataService();
+            return oDataService.Add(customerModel);
+        }
+
+        public bool UpdateCustomerDetails(CustomerModel customerModel)
+        {
+            CustomerDataService oDataService = new CustomerDataService();
+            return oDataService.Update(customerModel);
+        }
+
+
         public bool DeleteCustomer(int customerId)
         {
             CustomerDataService oDataService = new CustomerDataService();
