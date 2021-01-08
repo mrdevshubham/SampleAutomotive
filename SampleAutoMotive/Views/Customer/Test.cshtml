@@ -29,7 +29,16 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                                </div>
+                                <div style="text-align:right" class="col-md-6">
+                                    <button id="btn-addcustomer" type="button" class="btn btn-default">Add Customer</button>
+                                </div>
+                                
+                            </div>
+                            
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -78,20 +87,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">First Name</label>
-                                        <input type="email" class="form-control" id="custFirstName" placeholder="Enter First Name">
+                                        <input type="text" class="form-control" id="custFirstName" placeholder="Enter First Name">
                                         <input type="text" hidden="hidden" class="form-control" id="custId">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Last Name</label>
-                                        <input type="email" class="form-control" id="custLastName" placeholder="Enter Last Name">
+                                        <input type="text" class="form-control" id="custLastName" placeholder="Enter Last Name">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Phone</label>
-                                        <input type="email" class="form-control" id="custPhone" placeholder="Enter Phone">
+                                        <input type="text" class="form-control" id="custPhone" placeholder="Enter Phone">
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +108,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Zip Code</label>
-                                        <input type="email" class="form-control" id="custZipCode" placeholder="Enter Zip Code">
+                                        <input type="number" class="form-control" id="custZipCode" placeholder="Enter Zip Code">
                                     </div>
                                 </div>
                             </div>
@@ -186,25 +195,68 @@
             }
             return;
         });
-            
 
+
+        $('#btn-addcustomer').click(function () {
+            alert();
+        })
 
         $(document).on('click', '.clsEditUser', function () {
-            $("#model-title").text('Edit User');
-            var customerDetails = {
-                CustomerId: $(this).parents('tr').attr("Id").trim(),
-                FirstName: 'Hemanth',
-                LastName: 'Vanukar',
-                Phone: '+91-0000000000',
-                ZipCode: '327001'
-            }
             var customerId = $(this).parents('tr').attr("Id").trim();
+            $("#model-title").text('Edit User');
 
-            $('#modal-lg').modal(
-                { show: true }
-            );
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetCustomer", "Customer")",
+                    data: {customerId : customerId},
+                    cache: false,
+                success: function (data) {
+                    if (data) {
+                        $('#custId').val(data.CustomerId);
+                        $('#custFirstName').val(data.FirstName);
+                        $('#custLastName').val(data.LastName);
+                        $('#custPhone').val(data.Phone);
+                        $('#custZipCode').val(data.ZipCode);
+
+                        $('#modal-lg').modal({ show: true });
+
+                    } else {
+                        alert("There was some problem editing the customer.")
+                    }
+                    }
+                });
         });
+        $('#btn-savechanges').click(function () {
 
+            var customerId = $('#custId').val();
+
+            if (customerId && customerId != 0) {
+
+                var customerDetails = {
+                    CustomerId: $('#custId').val(),
+                    FirstName: $('#custFirstName').val(),
+                    LastName: $('#custLastName').val(),
+                    Phone: $('#custPhone').val(),
+                    ZipCode: $('#custZipCode').val()
+                }
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Update", "Customer")",
+                    data: customerDetails,
+                    cache: false,
+                    success: function (data) {
+                        if (data.Result == true) {
+                            $("#modal-lg").modal('toggle');
+                            testDataTable.draw();
+                        } else {
+                            alert("Some error happened..")
+                        }
+                    }
+                });
+            }
+        })
         $(document).on('click', '.clsDeleteUser', function () {
             var customerId = $(this).parents('tr').attr("Id").trim();
             var boolResult = confirm("Are you sure you want to delete this user?");

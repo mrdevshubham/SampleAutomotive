@@ -67,6 +67,7 @@ namespace Automotive.Data
                 if (customer != null)
                 {
                     CustomerModel objCustomerModel = new CustomerModel();
+                    objCustomerModel.CustomerId = customer.customer_id;
                     objCustomerModel.FirstName = customer.first_name;
                     objCustomerModel.LastName = customer.last_name;
                     objCustomerModel.Phone = customer.phone;
