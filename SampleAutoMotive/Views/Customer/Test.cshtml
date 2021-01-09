@@ -128,6 +128,73 @@
 </div>
 <!-- /.modal -->
 
+<div class="modal fade" id="modal-ad">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @*<div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>*@
+            <div class="modal-header">
+                <h4 id="model-title" class="modal-title">Add Customer</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">First Name</label>
+                                        <input type="text" class="form-control" id="AddFirstName" placeholder="Enter First Name">
+                                        <input type="text" hidden="hidden" class="form-control" id="AddcustId">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Last Name</label>
+                                        <input type="text" class="form-control" id="AddLastName" placeholder="Enter Last Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Phone</label>
+                                        <input type="text" class="form-control" id="AddcustPhone" placeholder="Enter Phone">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Zip Code</label>
+                                        <input type="number" class="form-control" id="AddcustZipCode" placeholder="Enter Zip Code">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">E-Mail</label>
+                                        <input type="email" class="form-control" id="AddcustEmail" placeholder="Enter E-Mail">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer justify-content-between pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="Abtn-savechanges" type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <script>
 
     var dataTableColumnDefinitions =
@@ -198,7 +265,37 @@
 
 
         $('#btn-addcustomer').click(function () {
-            alert();
+            
+            $('#modal-ad').modal({ show: true });
+        })
+        $('#Abtn-savechanges').click(function () {         
+
+           
+                var acustomerDetails = {
+                    customerId: $('#AddcustId').val(),
+                    FirstName: $('#AddFirstName').val(),
+                    LastName: $('#AddLastName').val(),
+                    Email: $('#AddcustEmail').val(),
+                    Phone: $('#AddcustPhone').val(),
+                    ZipCode: $('#AddcustZipCode').val()
+                }
+
+                console.log(acustomerDetails);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add", "Customer")",
+                    data: acustomerDetails,
+                    cache: false,
+                    success: function (data) {
+                        if (data.Result == true) {
+                            $("#modal-ad").modal('toggle');
+                            testDataTable.draw();
+                        } else {
+                            alert("Some error happened..")
+                        }
+                    }
+                });
+            
         })
 
         $(document).on('click', '.clsEditUser', function () {
