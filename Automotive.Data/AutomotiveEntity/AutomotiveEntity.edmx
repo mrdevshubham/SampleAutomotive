@@ -32,7 +32,7 @@
           <Property Name="street" Type="varchar" MaxLength="255" />
           <Property Name="city" Type="varchar" MaxLength="50" />
           <Property Name="state" Type="varchar" MaxLength="25" />
-          <Property Name="zip_code" Type="varchar" MaxLength="5" />
+          <Property Name="zip_code" Type="varchar" MaxLength="10" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Order_Items">
@@ -344,7 +344,7 @@
           <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="zip_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="zip_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__customer__6FE99F9F" FromRole="Customers" ToRole="Orders" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>

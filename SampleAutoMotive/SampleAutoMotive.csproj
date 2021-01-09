@@ -1940,6 +1940,7 @@
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Brands\Index.cshtml" />
     <Content Include="Views\Customer\Test.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

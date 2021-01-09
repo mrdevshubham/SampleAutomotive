@@ -11,6 +11,12 @@ namespace SampleAutoMotive.Controllers
 {
     public class CustomerController : Controller
     {
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         // GET: Customer
         public ActionResult List()
         {

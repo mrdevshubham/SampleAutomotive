@@ -25,9 +25,9 @@ namespace Automotive.Data
                 if (!string.IsNullOrEmpty(searchModel.orderByCommand))
                 {
                     if (searchModel.orderByCommand == "asc")
-                        customer = customer.OrderBy(x => x.customer_id);
+                        customer = customer.OrderBy(x => x.first_name);
                     else
-                        customer = customer.OrderByDescending(x => x.customer_id);
+                        customer = customer.OrderByDescending(x => x.first_name);
                 }
                 
                 customer = customer
@@ -97,7 +97,7 @@ namespace Automotive.Data
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

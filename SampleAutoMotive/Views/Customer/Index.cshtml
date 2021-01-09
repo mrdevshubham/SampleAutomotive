@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Test";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -36,9 +36,9 @@
                                 <div style="text-align:right" class="col-md-6">
                                     <button id="btn-addcustomer" type="button" class="btn btn-default">Add Customer</button>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -128,12 +128,12 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="modal-ad">
+<div class="modal fade" id="modal-add-customer">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             @*<div class="overlay"><i class="fas fa-3x fa-sync-alt fa-spin"></i><div class="text-bold pt-2">Loading...</div></div>*@
             <div class="modal-header">
-                <h4 id="model-title" class="modal-title">Add Customer</h4>
+                <h4 id="model-title-add" class="modal-title">Add Customer</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -162,7 +162,7 @@
                                         <input type="text" class="form-control" id="AddcustPhone" placeholder="Enter Phone">
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -264,12 +264,12 @@
 
 
         $('#btn-addcustomer').click(function () {
-            
-            $('#modal-ad').modal({ show: true });
-        })
-        $('#Abtn-savechanges').click(function () {         
 
-           
+            $('#modal-add-customer').modal({ show: true });
+        })
+        $('#Abtn-savechanges').click(function () {
+
+
                 var acustomerDetails = {
                     FirstName: $('#AddFirstName').val(),
                     LastName: $('#AddLastName').val(),
@@ -286,14 +286,16 @@
                     cache: false,
                     success: function (data) {
                         if (data.Result == true) {
-                            $("#modal-ad").modal('toggle');
-                            testDataTable.draw();
+                            $("#modal-add-customer").modal('toggle');
+                            setTimeout(function(){
+                                testDataTable.draw();
+                                },2000);                            
                         } else {
                             alert("Some error happened..")
                         }
                     }
                 });
-            
+
         })
 
         $(document).on('click', '.clsEditUser', function () {
