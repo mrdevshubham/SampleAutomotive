@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Automotive.Business;
+using Automotive.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,17 @@ namespace SampleAutoMotive.Controllers
         // GET: Product
         public ActionResult Index()
         {
+            ProductService oProductService = new ProductService();
+            List<ProductModel> products = oProductService.GetAllProducts();
+            return View(products);
+        }
+
+
+        public ActionResult Add()
+        {
             return View();
         }
+
+
     }
 }

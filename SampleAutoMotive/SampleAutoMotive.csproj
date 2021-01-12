@@ -1941,10 +1941,11 @@
     <Content Include="Views\Brands\Index.cshtml" />
     <Content Include="Views\Customer\Test.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
