@@ -1,8 +1,9 @@
-﻿
+﻿@model IEnumerable<Automotive.Model.ProductModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -53,6 +54,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach (var product in Model)
+                                    {
+                                        <tr>
+                                            <td>@product.ProductName</td>
+                                            <td>@product.BrandName </td>
+                                            <td>@product.CategoryName</td>
+                                            <td>@product.ModelYear</td>
+                                            <td>@product.ListPrice</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "Persons")">Edit</a> |
+                                                <a href="@Url.Action("Delete", "Persons")">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -70,61 +86,17 @@
 </div>
 
 <script>
-    var dataTableColumnDefinitions =
-        [
-            {
-              "targets": 0, "data": "ProductName", "sortable": true               },
-            { "targets": 1, "data": "BrandName", "sortable": true },
-            { "targets": 2, "data": "CategoryName", "sortable": true },
-            { "targets": 3, "data": "ModelYear", "sortable": true },
-            { "targets": 4, "data": "ListPrice", "sortable": true },
-            {
-                "targets": 5,
-                "render": function (data, type, row, meta) {
-                    var linkEdit = '<a href="#!"><i class="fas fa-edit clsEditUser"></i></a>';
-                    var linkDelete = '<a href="#!"><i class="fas fa-trash clsDeleteUser"></i></a>';
-                    return linkEdit + " | " + linkDelete;
-                },
-                "sortable": false,
-                "searchable": false,
-                "visible": true
-            }
-        ];
-     var dataTableOptions = {
-        "paging": true,
-        "processing": true,
-        "scrollY": "350px",
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-        "serverSide": true,
-        "columnDefs": dataTableColumnDefinitions,
-        "ajax": {
-            url: "@Url.Action("List","Product")", // json datasource
-            
-            type: "POST",  // method  , by default get,
-            
-            error: function () {  // error handling
-                $(".employee-grid-error").html("");
-                $("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
-                $("#employee-grid_processing").css("display", "none");
-
-            }
-            
-        },
-        "createdRow": function (row, data, dataIndex) {
-            //if (data.DT_RowData.pkey == 5) {
-            //    //$(row).css('color','red')
-            //    // Do something which you want to do with the element
-            //}
-        }
-    };
-
     $(function () {
-        $('#example2').DataTable(dataTableOptions);
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
     });
+
 </script>
 
