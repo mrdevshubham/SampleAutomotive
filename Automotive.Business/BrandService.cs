@@ -11,11 +11,11 @@ namespace Automotive.Business
     public class BrandService
     {
 
-        public IEnumerable<BrandModel> GetAllBrands()
+        public List<BrandModel> GetAllBrands()
         {
             BrandData oBrandDataService = new BrandData();
             IEnumerable<BrandModel> brands = oBrandDataService.GetAll();
-            return brands;
+            return brands.ToList();
         }
 
         public bool DeleteBrand(int brandId)

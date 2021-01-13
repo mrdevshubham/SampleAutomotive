@@ -21,7 +21,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -43,18 +42,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Product Name</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Product Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Brand</label>
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
+                                            <select id="ddl-select-brand" class="form-control">
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -63,30 +58,18 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Category</label>
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
+                                            <select id="ddl-select-category" class="form-control">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Category</label>
-                                            <select class="form-control">
-                                                <option>2010</option>
-                                                <option>2011</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
+                                            <label>Year</label>
+                                            <select id="ddl-select-year" class="form-control">
+                                                <option selected="selected" value="0">Select Model Year</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
                                             </select>
                                         </div>
                                     </div>
@@ -95,7 +78,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Price</label>
-                                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Price">
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +87,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -117,3 +100,53 @@
     </section>
     <!-- /.content -->
 </div>
+
+<script type="text/javascript">
+
+    function GetAllCategories() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetAll", "Category")",
+            data: null,
+            cache: false,
+            success: function (data) {
+                if (data) {
+                    $('#ddl-select-category').append(new Option('Select Category', 0, true, true));
+                    $.each(data, function (i, el) {
+                        $('#ddl-select-category').append(new Option(el.CategoryName, el.CategoryId))
+                    });
+                } else {
+                    alert("Some error happened while loading category..")
+                }
+            }
+        });
+    }
+
+    function GetAllBrands() {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetAll", "Brands")",
+            data: null,
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    $('#ddl-select-brand').append(new Option('Select Brand', 0, true, true));
+                    $.each(data, function (i, el) {
+                        $('#ddl-select-brand').append(new Option(el.BrandName, el.BrandId))
+                    });
+                } else {
+                    alert("Some error happened while loading brands..")
+                }
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        GetAllCategories();
+        GetAllBrands();
+    })
+
+
+</script>

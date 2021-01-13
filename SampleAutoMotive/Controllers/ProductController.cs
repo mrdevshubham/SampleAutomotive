@@ -38,6 +38,12 @@ namespace SampleAutoMotive.Controllers
         }
 
         [HttpPost]
+        public ActionResult Add(int brand)
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult List(DataTableRequest dTablerequest)
         {
             ProductService oPService = new ProductService();

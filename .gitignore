@@ -15,3 +15,5 @@
 /Automotive.Business/bin/Debug
 /Automotive.Model/obj/Debug
 /Automotive.Model/bin/Debug
+
+*.cache

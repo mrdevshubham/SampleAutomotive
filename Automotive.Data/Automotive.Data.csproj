@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="BrandData.cs" />
     <Compile Include="CustomerDataService.cs" />
+    <Compile Include="ProductCategoryDataService.cs" />
     <Compile Include="ProductDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

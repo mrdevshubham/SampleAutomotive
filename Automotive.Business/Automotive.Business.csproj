@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BrandService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="ProductCatogoryService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

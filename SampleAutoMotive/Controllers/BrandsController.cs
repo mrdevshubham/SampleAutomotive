@@ -25,5 +25,12 @@ namespace SampleAutoMotive.Controllers
             bool Result = oBrandService.DeleteBrand(brandId);
             return Json(new { Result = Result });
         }
+
+        [HttpPost]
+        public ActionResult GetAll()
+        {
+            List<BrandModel> brands = (new BrandService()).GetAllBrands();
+            return Json(brands);
+        }
     }
 }
