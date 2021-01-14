@@ -42,7 +42,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Product Name</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Product Name">
+                                            <input type="email" class="form-control" id="ProductName" placeholder="Product Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -78,7 +78,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Price</label>
-                                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter Price">
+                                            <input type="number" class="form-control" id="Price" placeholder="Enter Price">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary">Submit</button>
+                                <button type="button" id="add-btn" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -147,6 +147,34 @@
         GetAllCategories();
         GetAllBrands();
     })
+    $('#add-btn').click(function () {
 
+
+        var products = {
+
+           
+            ProductName: $('#ProductName').val(),
+            BrandID: $('#ddl-select-brand').val(),
+            CategoryID: $('#ddl-select-category').val(),
+            ModelYear: $('#ddl-select-year').val(),
+            ListPrice: $('#Price').val()
+        }
+
+                console.log(products);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add", "Product")",
+                    data: products,
+                    cache: false,
+                    success: function (data) {
+                        if (data.Result == true) {
+                            window.location.href = '@Url.Action("All","Product")';
+                        } else {
+                            alert("Some error happened..")
+                        }
+                    }
+                });
+
+        })
 
 </script>

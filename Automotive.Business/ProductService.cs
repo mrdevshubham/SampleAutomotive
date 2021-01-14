@@ -29,5 +29,11 @@ namespace Automotive.Business
             return odataService.ListOfProducts();
         }
 
+        public bool AddProduct(ProductModel product)
+        {
+            ProductDataService oPService = new ProductDataService();
+            return oPService.Add(product);
+        }
+
     }
 }

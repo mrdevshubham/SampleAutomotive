@@ -38,9 +38,15 @@ namespace SampleAutoMotive.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(int brand)
+        public ActionResult Add(ProductModel product)
         {
-            return View();
+            ProductService oPService = new ProductService();
+            bool Result = oPService.AddProduct(product);
+            if (Result)
+                return Json(new { Result = Result, Message = "Customer has been added successfully." });
+            else
+                return Json(new { Result = Result, Message = "Some Technical Issue Occered." });
+            
         }
 
         [HttpPost]

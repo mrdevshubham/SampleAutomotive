@@ -14,5 +14,9 @@ namespace Automotive.Model
         public string CategoryName { get; set; }
         public int ModelYear { get; set; }
         public decimal ListPrice { get; set; }
+
+        public int BrandID { get; set; }
+
+        public int CategoryID { get; set; }
     }
 }

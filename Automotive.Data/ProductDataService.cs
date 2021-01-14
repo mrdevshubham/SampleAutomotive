@@ -86,5 +86,33 @@ namespace Automotive.Data
             }
         }
 
+        public bool Add(ProductModel product)
+        {
+            try
+            {
+                using (var bikestorecontext = new SampleAutomotiveEntities())
+                {
+                    Product proobj = new Product();
+
+
+                    proobj.product_name = product.ProductName;
+                    proobj.model_year = (short)product.ModelYear;
+                    proobj.list_price = product.ListPrice;
+                    
+                    proobj.brand_id = product.BrandID;
+                    proobj.category_id = product.CategoryID;
+                    
+                    bikestorecontext.Products.Add(proobj);
+                   
+                    bikestorecontext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }
