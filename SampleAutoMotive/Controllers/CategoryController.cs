@@ -8,6 +8,7 @@ using Automotive.Model;
 
 namespace SampleAutoMotive.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         // GET: Category

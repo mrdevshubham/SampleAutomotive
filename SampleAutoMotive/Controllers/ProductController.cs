@@ -9,6 +9,7 @@ using SampleAutoMotive.Models;
 
 namespace SampleAutoMotive.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         // GET: Product
