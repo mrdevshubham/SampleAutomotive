@@ -139,6 +139,7 @@
     <Compile Include="Modelbinder\DataTableRequestModelBinder.cs" />
     <Compile Include="Models\DataTableRequest.cs" />
     <Compile Include="Models\DataTableResponse.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleAutoMotive.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,12 +22,12 @@ namespace SampleAutoMotive.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public ActionResult Test()
-        {
-            FormsAuthentication.SetAuthCookie("hemanth", false);
-            return RedirectToAction("Index", "Product");
-        }
+        //[AllowAnonymous]
+        //public ActionResult Test()
+        //{
+        //    FormsAuthentication.SetAuthCookie("hemanth", false);
+        //    return RedirectToAction("Index", "Product");
+        //}
 
         [AllowAnonymous]
         public ActionResult LogOut()
@@ -35,16 +36,20 @@ namespace SampleAutoMotive.Controllers
             return RedirectToAction("Login");
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(UserModel userModel)
         {
-            if (Authenticate(username, password))
+            if (string.IsNullOrEmpty(userModel.username) || string.IsNullOrEmpty(userModel.password))
             {
-                FormsAuthentication.SetAuthCookie(username, false);
-                return RedirectToAction("Index", "Product");
-                //return Json(new { Result = true });
+                return RedirectToAction("Login");
             }
-            return Json(new { Result = false });
+            if (Authenticate(userModel.username, userModel.password))
+            {
+                FormsAuthentication.SetAuthCookie(userModel.username, userModel.isRememberMe);
+                return RedirectToAction("Index", "Product");
+            }
+            return RedirectToAction("Login");
         }
 
         private bool Authenticate(string username, string password)

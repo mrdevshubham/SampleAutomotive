@@ -17,3 +17,9 @@
 /Automotive.Model/bin/Debug
 
 *.cache
+/Automotive.Business/obj/Release
+/Automotive.Business/bin/Release
+/Automotive.Data/obj/Release
+/Automotive.Data/bin/Release
+/Automotive.Model/obj/Release
+/Automotive.Model/bin/Release
